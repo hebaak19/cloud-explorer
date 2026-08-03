@@ -1,7 +1,8 @@
 export type CameraMode = "vintage" | "modern" | "polaroid";
 
 export const CONFIG = {
-  gradientColors: ["#ff0000", "#ff9900", "#ffff00"],
+  //change the gradient colors to pink, purple, and blue
+  gradientColors: ["#ff00ff", "#800080", "#0000ff"],
 
   name: "Heba Adel",
 
