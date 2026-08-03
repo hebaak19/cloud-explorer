@@ -3,7 +3,7 @@ export type CameraMode = "vintage" | "modern" | "polaroid";
 export const CONFIG = {
   gradientColors: ["#ff0000", "#ff9900", "#ffff00"],
 
-  name: "Heba Adellllllllll ",
+  name: "Heba Adellllllll ",
 
   funFact: "I hate to pay my bills.",
 
