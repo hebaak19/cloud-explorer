@@ -36,12 +36,26 @@ jobs:
     needs: build-and-push # <-- this job must wait for which job?
     runs-on: ubuntu-latest
     steps:
+      - name: Prepare SSH key
+        env:
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+        run: |
+          set -e
+          if [ -z "$SSH_KEY" ]; then
+            echo "SSH_KEY secret is empty" >&2
+            exit 1
+          fi
+          case "$SSH_KEY" in
+            *\\n*) printf '%b' "$SSH_KEY" > "$RUNNER_TEMP/deploy_key" ;;
+            *) printf '%s\n' "$SSH_KEY" > "$RUNNER_TEMP/deploy_key" ;;
+          esac
+          chmod 600 "$RUNNER_TEMP/deploy_key"
       - name: SSH and redeploy
         uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
+          key_path: ${{ runner.temp }}/deploy_key
           script: |
             set -e
             docker rm -f cloud-explorer || true
