@@ -36,12 +36,17 @@ jobs:
     needs: build-and-push # <-- this job must wait for which job?
     runs-on: ubuntu-latest
     steps:
+      - name: Prepare SSH key
+        run: |
+          mkdir -p ~/.ssh
+          printf '%b' "${{ secrets.SSH_KEY }}" | tr -d '\r' > ~/.ssh/cloud-explorer_deploy_key
+          chmod 600 ~/.ssh/cloud-explorer_deploy_key
       - name: SSH and redeploy
         uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
+          key_path: ~/.ssh/cloud-explorer_deploy_key
           script: |
             set -e
             docker rm -f cloud-explorer || true
