@@ -2,6 +2,7 @@
 FROM node:22-alpine AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
+#ci stands for clean install, it will remove the node_modules folder and install the dependencies from scratch based on the package-lock.json file. This ensures that the exact versions of dependencies are installed, which can help avoid issues with mismatched versions.
 RUN npm ci
 COPY . .
 RUN npm run build

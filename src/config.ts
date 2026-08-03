@@ -18,6 +18,6 @@ export const CONFIG = {
 
     title: "The Odessy",
 
-    posterUrl: "/public/images.png",
+    posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3H1ZUqnzZ5lsiZTW4ThEYUllw7vqtijqp2hUx6sho8A&s=10",
   },
 };
