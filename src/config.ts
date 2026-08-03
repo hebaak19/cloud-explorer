@@ -5,7 +5,7 @@ export const CONFIG = {
 
   name: "Heba Adel",
 
-  funFact: "I hate to pay my billssssss.",
+  funFact: "I hate to pay my bills.",
 
   isOnCloud: false,
 
